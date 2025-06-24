@@ -1,0 +1,26 @@
+cucm:
+  host: "10.1.1.100"
+  port: 8443
+  api_version: "v1"
+  timeout: 30
+  verify_ssl: false
+
+api:
+  preferred_method: "certificate_management"  # Options: certificate_management, platform_api, axl
+  endpoints:
+    certificate_management: "/ccmadmin/certificate/"
+    platform_api: "/platform-services/services/certificate"
+    axl: "/axl/"
+  
+monitoring:
+  output_file: "cucm_certificates.prom"
+  warning_days: 30
+  critical_days: 7
+  
+prometheus:
+  metric_prefix: "cucm"
+  include_metadata: true
+  
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "cucm_monitor.log"

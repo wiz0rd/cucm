@@ -1,0 +1,8 @@
+cucm_certificate_expiry_days{service="CUCM Web Interface",hostname="10.1.1.100",port="8443",subject_cn="cucm-pub.example.com",issuer_cn="CA Certificate Authority"} 45
+cucm_certificate_expiry_days{service="CUCM Admin",hostname="10.1.1.100",port="8443",subject_cn="cucm-pub.example.com",issuer_cn="CA Certificate Authority"} 45
+cucm_certificate_expiry_days{service="CUCM User Pages",hostname="10.1.1.100",port="8080",subject_cn="cucm-pub.example.com",issuer_cn="CA Certificate Authority"} 45
+cucm_certificate_expiry_days{service="CUCM HTTPS",hostname="10.1.1.100",port="443",subject_cn="cucm-pub.example.com",issuer_cn="CA Certificate Authority"} 45
+cucm_certificate_expiry_days{service="CUCM CAPF",hostname="10.1.1.100",port="3804",subject_cn="cucm-capf.example.com",issuer_cn="Internal CA"} 12
+cucm_certificate_expiry_days{service="CUCM CTI",hostname="10.1.1.100",port="2748",subject_cn="cucm-cti.example.com",issuer_cn="Internal CA"} 87
+cucm_certificate_expiry_days{service="CUCM RIS",hostname="10.1.1.100",port="8001",subject_cn="cucm-ris.example.com",issuer_cn="Internal CA"} 156
+cucm_data_collection_date{hostname="10.1.1.100"} 06242025
