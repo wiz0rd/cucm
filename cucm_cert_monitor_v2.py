@@ -267,6 +267,10 @@ class PrometheusExporter:
         """Generate Prometheus metrics"""
         metrics = []
         
+        # Add help text for metrics
+        metrics.append(f'# HELP {self.metric_prefix}_certificate_expiry_days Days until certificate expiry')
+        metrics.append(f'# TYPE {self.metric_prefix}_certificate_expiry_days gauge')
+        
         for cert in certificates:
             labels = [
                 f'service="{cert["service_name"]}"',
@@ -280,9 +284,52 @@ class PrometheusExporter:
             metric_line = f'{self.metric_prefix}_certificate_expiry_days{{{",".join(labels)}}} {cert["days_until_expiry"]}'
             metrics.append(metric_line)
         
-        # Add collection date
-        collection_date = datetime.datetime.now().strftime("%m%d%Y")
+        # Add summary metrics
+        total_certs = len(certificates)
+        expired_certs = len([c for c in certificates if c["days_until_expiry"] < 0])
+        warning_certs = len([c for c in certificates if 0 <= c["days_until_expiry"] < self.config.config['monitoring']['warning_days']])
+        critical_certs = len([c for c in certificates if 0 <= c["days_until_expiry"] < self.config.config['monitoring']['critical_days']])
+        
+        metrics.append("")
+        metrics.append(f'# HELP {self.metric_prefix}_certificates_total Total number of certificates monitored')
+        metrics.append(f'# TYPE {self.metric_prefix}_certificates_total gauge')
+        metrics.append(f'{self.metric_prefix}_certificates_total{{hostname="{self.config.config["cucm"]["host"]}"}} {total_certs}')
+        
+        metrics.append("")
+        metrics.append(f'# HELP {self.metric_prefix}_certificates_expired Number of expired certificates')
+        metrics.append(f'# TYPE {self.metric_prefix}_certificates_expired gauge')
+        metrics.append(f'{self.metric_prefix}_certificates_expired{{hostname="{self.config.config["cucm"]["host"]}"}} {expired_certs}')
+        
+        metrics.append("")
+        metrics.append(f'# HELP {self.metric_prefix}_certificates_warning Number of certificates expiring within warning threshold')
+        metrics.append(f'# TYPE {self.metric_prefix}_certificates_warning gauge')
+        metrics.append(f'{self.metric_prefix}_certificates_warning{{hostname="{self.config.config["cucm"]["host"]}"}} {warning_certs}')
+        
+        metrics.append("")
+        metrics.append(f'# HELP {self.metric_prefix}_certificates_critical Number of certificates expiring within critical threshold')
+        metrics.append(f'# TYPE {self.metric_prefix}_certificates_critical gauge')
+        metrics.append(f'{self.metric_prefix}_certificates_critical{{hostname="{self.config.config["cucm"]["host"]}"}} {critical_certs}')
+        
+        # Add collection metadata
+        collection_timestamp = int(datetime.datetime.now().timestamp())
+        collection_date = datetime.datetime.now().strftime("%Y%m%d")
+        
+        metrics.append("")
+        metrics.append(f'# HELP {self.metric_prefix}_last_collection_timestamp_seconds Unix timestamp of last data collection')
+        metrics.append(f'# TYPE {self.metric_prefix}_last_collection_timestamp_seconds gauge')
+        metrics.append(f'{self.metric_prefix}_last_collection_timestamp_seconds{{hostname="{self.config.config["cucm"]["host"]}"}} {collection_timestamp}')
+        
+        metrics.append("")
+        metrics.append(f'# HELP {self.metric_prefix}_data_collection_date Data collection date in YYYYMMDD format')
+        metrics.append(f'# TYPE {self.metric_prefix}_data_collection_date gauge')
         metrics.append(f'{self.metric_prefix}_data_collection_date{{hostname="{self.config.config["cucm"]["host"]}"}} {collection_date}')
+        
+        # Add health check metric
+        metrics.append("")
+        metrics.append(f'# HELP {self.metric_prefix}_collection_success Whether data collection was successful')
+        metrics.append(f'# TYPE {self.metric_prefix}_collection_success gauge')
+        metrics.append(f'{self.metric_prefix}_collection_success{{hostname="{self.config.config["cucm"]["host"]}"}} 1')
+        
         metrics.append("")
         
         return "\n".join(metrics)
