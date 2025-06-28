@@ -1,10 +1,9 @@
 cucm:
-  host: "10.1.1.100"
+  host: "172.16.40.81"
   port: 8443
   api_version: "v1"
   timeout: 30
   verify_ssl: false
-  server_description: "Production CUCM Cluster Primary"
 
 api:
   preferred_method: "certificate_management"  # Options: certificate_management, platform_api, axl
@@ -15,6 +14,7 @@ api:
   
 monitoring:
   output_file: "cucm_certificates.prom"
+  output_directory: "./"
   warning_days: 30
   critical_days: 7
   
@@ -23,5 +23,5 @@ prometheus:
   include_metadata: true
   
 logging:
-  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  level: "DEBUG"  # DEBUG, INFO, WARNING, ERROR
   file: "cucm_monitor.log"
