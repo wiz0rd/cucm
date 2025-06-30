@@ -126,7 +126,7 @@ def get_certificates_via_axl(hostname):
             
             print(f"  Trying AXL on port {port} with API version {version}...")
             
-            # SOAP envelope for SQL query to get certificates with PEM data
+            # SOAP envelope for SQL query to get only certificates assigned to services
             soap_body = f'''<?xml version="1.0" encoding="UTF-8"?>
             <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
                               xmlns:ns="http://www.cisco.com/AXL/API/{version}">
@@ -198,11 +198,29 @@ def get_certificates_via_axl(hostname):
                     serial = serial_elem.text if serial_elem is not None and serial_elem.text else 'Unknown'
                     cert_pem = cert_pem_elem.text if cert_pem_elem.text else None
                     
+                    # Filter out Cisco root/manufacturing CAs and trust anchors (not applied to services)
+                    skip_patterns = [
+                        'Cisco Root CA', 'Cisco Manufacturing CA', 'SUDI CA', 
+                        'Cisco Licensing Root CA', 'IdenTrust', 'Cisco Basic Assurance'
+                    ]
+                    
                     # Extract CN from subject for name
                     name = 'Unknown'
                     if 'CN=' in subject:
                         cn_part = subject.split('CN=')[1]
                         name = cn_part.split(',')[0].strip()
+                    
+                    # Skip certificates that match exclusion patterns (trust anchors, not service certs)
+                    if any(pattern in name for pattern in skip_patterns):
+                        continue
+                    
+                    # Determine service name based on certificate name patterns
+                    if 'CAPF-' in name:
+                        service_name = 'CAPF'
+                    elif 'ITLRECOVERY' in name:
+                        service_name = 'ITL-Recovery'
+                    else:
+                        service_name = 'CallManager'
                     
                     # Parse PEM certificate to extract expiration date
                     expiry_date = None
@@ -224,7 +242,7 @@ def get_certificates_via_axl(hostname):
                     certificates.append({
                         'hostname': hostname,
                         'port': 'DB',
-                        'service_name': 'CUCM Certificate',
+                        'service_name': service_name,
                         'certificate_name': name,
                         'subject_cn': subject,
                         'issuer_cn': issuer,
