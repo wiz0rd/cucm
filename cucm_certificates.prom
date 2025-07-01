@@ -1,0 +1,18 @@
+cucm_collection_timestamp{hostname="172.16.40.81"} 20250630
+cucm_total_certificates{hostname="172.16.40.81"} 12
+cucm_expired_certificates{hostname="172.16.40.81"} 0
+cucm_warning_certificates{hostname="172.16.40.81"} 0
+cucm_critical_certificates{hostname="172.16.40.81"} 0
+cucm_certificate_expiry_days{service="CallManager",hostname="172.16.40.81",port="DB",certificate_name="cucm.wiz",subject_cn="L=Germany,ST=Tx,CN=cucm.wiz,OU=Lab,O=Wiz0rdsLab,C=US",issuer_cn="L=Germany,ST=Tx,CN=cucm.wiz,OU=Lab,O=Wiz0rdsLab,C=US",certificate_type="CUCM Certificate"} 1822
+cucm_certificate_expiry_days{service="CallManager",hostname="172.16.40.81",port="DB",certificate_name="cucm-EC.wiz",subject_cn="L=Germany,ST=Tx,CN=cucm-EC.wiz,OU=Lab,O=Wiz0rdsLab,C=US",issuer_cn="L=Germany,ST=Tx,CN=cucm-EC.wiz,OU=Lab,O=Wiz0rdsLab,C=US",certificate_type="CUCM Certificate"} 1822
+cucm_certificate_expiry_days{service="CAPF",hostname="172.16.40.81",port="DB",certificate_name="CAPF-145e8060",subject_cn="L=Germany,ST=Tx,CN=CAPF-145e8060,OU=Lab,O=Wiz0rdsLab,C=US",issuer_cn="L=Germany,ST=Tx,CN=CAPF-145e8060,OU=Lab,O=Wiz0rdsLab,C=US",certificate_type="CUCM Certificate"} 1822
+cucm_certificate_expiry_days{service="CallManager",hostname="172.16.40.81",port="DB",certificate_name="cucm.wiz",subject_cn="L=Germany,ST=Tx,CN=cucm.wiz,OU=Lab,O=Wiz0rdsLab,C=US",issuer_cn="L=Germany,ST=Tx,CN=cucm.wiz,OU=Lab,O=Wiz0rdsLab,C=US",certificate_type="CUCM Certificate"} 1822
+cucm_certificate_expiry_days{service="CallManager",hostname="172.16.40.81",port="DB",certificate_name="cucm.wiz",subject_cn="L=Germany,ST=Tx,CN=cucm.wiz,OU=Lab,O=Wiz0rdsLab,C=US",issuer_cn="L=Germany,ST=Tx,CN=cucm.wiz,OU=Lab,O=Wiz0rdsLab,C=US",certificate_type="CUCM Certificate"} 1822
+cucm_certificate_expiry_days{service="CallManager",hostname="172.16.40.81",port="DB",certificate_name="cucm.wiz",subject_cn="L=Germany,ST=Tx,CN=cucm.wiz,OU=Lab,O=Wiz0rdsLab,C=US",issuer_cn="L=Germany,ST=Tx,CN=cucm.wiz,OU=Lab,O=Wiz0rdsLab,C=US",certificate_type="CUCM Certificate"} 1822
+cucm_certificate_expiry_days{service="CallManager",hostname="172.16.40.81",port="DB",certificate_name="cucm-EC.wiz",subject_cn="L=Germany,ST=Tx,CN=cucm-EC.wiz,OU=Lab,O=Wiz0rdsLab,C=US",issuer_cn="L=Germany,ST=Tx,CN=cucm-EC.wiz,OU=Lab,O=Wiz0rdsLab,C=US",certificate_type="CUCM Certificate"} 1822
+cucm_certificate_expiry_days{service="ITL-Recovery",hostname="172.16.40.81",port="DB",certificate_name="ITLRECOVERY_cucm.wiz",subject_cn="L=Germany,ST=Tx,CN=ITLRECOVERY_cucm.wiz,OU=Lab,O=Wiz0rdsLab,C=US",issuer_cn="L=Germany,ST=Tx,CN=ITLRECOVERY_cucm.wiz,OU=Lab,O=Wiz0rdsLab,C=US",certificate_type="CUCM Certificate"} 1822
+cucm_certificate_expiry_days{service="CAPF",hostname="172.16.40.81",port="DB",certificate_name="CAPF-3d0a2af5",subject_cn="L=Germany,ST=Tx,CN=CAPF-3d0a2af5,OU=Lab,O=Wiz0rdsLab,C=US",issuer_cn="L=Germany,ST=Tx,CN=CAPF-3d0a2af5,OU=Lab,O=Wiz0rdsLab,C=US",certificate_type="CUCM Certificate"} 1822
+cucm_certificate_expiry_days{service="CAPF",hostname="172.16.40.81",port="DB",certificate_name="CAPF-6091b5c7",subject_cn="L=Germany,ST=Tx,CN=CAPF-6091b5c7,OU=Lab,O=Wiz0rdsLab,C=US",issuer_cn="L=Germany,ST=Tx,CN=CAPF-6091b5c7,OU=Lab,O=Wiz0rdsLab,C=US",certificate_type="CUCM Certificate"} 1822
+cucm_certificate_expiry_days{service="Web/Tomcat (8443)",hostname="172.16.40.81",port="8443",certificate_name="cucm.wiz",subject_cn="cucm.wiz",issuer_cn="cucm.wiz",certificate_type="Web/SSL"} 1822
+cucm_certificate_expiry_days{service="Web/HTTPS (443)",hostname="172.16.40.81",port="443",certificate_name="cucm.wiz",subject_cn="cucm.wiz",issuer_cn="cucm.wiz",certificate_type="Web/SSL"} 1822
+
